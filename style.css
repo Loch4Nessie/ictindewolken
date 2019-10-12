@@ -2,12 +2,15 @@ html, body {
   margin: 20;
   padding: 20;
 }
+
+script {
+  border: 10px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+
+
 canvas {
   display: block;
 }
 
-script {
-  border: 10px solid black;
-  margin: 50px;
-  padding: 50px;
-}
