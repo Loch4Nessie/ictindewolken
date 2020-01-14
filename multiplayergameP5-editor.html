@@ -16,17 +16,45 @@
         spel maken met javascript en er voor zorgen dat je dat spel op twee verschillende computers<br>
         kan spelen. Ons idee is om de game Pong te maken. We weten niet precies hoelang het duurt om<br>
         pong te maken en een server op te zetten, maar als we tijd over hebben willen we het spel verbeteren<br>
-        door iets van power-ups of een menu toe te voegen aan het spel. We hebben allemaal al kennis over javascript<br>
-        en P5.js dus we zullen niet heel veel hulp nodig hebben. We zullen ook gebruik maken van tutorials<br>
-        op Youtube. De rolverdeling voor het maken van Pong online gaat zo: 2 van ons gaan bezig met het<br>
-        maken van pong zelf in p5.js. De andere twee gaan dan de server opzetten. waarschijnlijk gaat het<br>
+        door iets van power-ups of een menu toe te voegen aan het spel. We hebben allemaal al kennis over<br> 
+        javascript en P5.js dus we zullen niet heel veel hulp nodig hebben. We zullen ook gebruik maken van<br> 
+        tutorials op Youtube. De rolverdeling voor het maken van Pong online gaat zo: 2 van ons gaan bezig met<br> 
+        het maken van pong zelf in p5.js. De andere twee gaan dan de server opzetten. waarschijnlijk gaat het<br>
         opzetten van de server sneller dan het maken van Pong. Als de server is opgezet kan dat team<br>
         de code die het andere team heeft gemaakt al in de server te gooien.
         
       </p>
       
+      <h2>Hoe het is gegaan</h2>
+      
       <p>
-        Je kan de huidige code <a href="https://github.com/Loch4Nessie/Pong-Online">hier</a> vinden.
+        We begonnen dit project door eerst wat tutorials op YouTube op te zoeken over Node.js en Socket.io.<br>
+        Het was daardoor gelukt om een server op te zetten. Het was ook gelukt om er voor te kunnen zorgen<br>
+        dat informatie van de ene client verstuurt werd naar de andere client. Maar daarna liepen we vast.<br>
+        Ons eerste idee was om Pong te gaan maken met p5.js  buiten de server en dan als de server klaar was<br>
+        om gebruikt te worden dat de code van de game in de server werd gegooid maar we kwamen er snel achter<br>
+        dat dat niet is hoe het werkte. We waren gewend om een single player game te maken met p5.js en alles<br>
+        te maken met de draw functie maar toen we dat probeerde lukte het niet. We wilden dat de coördinaten<br>
+        van de ‘pladdles’ van de cliënten naar elkaar verstuurd zouden worden. Het lukte om het bericht over te<br>
+        brengen maar omdat de coördinaten maar 1 keer werd verstuurt zag je alleen de eerste frame waar de<br>
+        paddle van de andere client was aangezien de draw 60 keer per seconde opnieuw tekent. Omdat er in de<br>
+        tutorial die we gekeken hadden geen gebruik werd gemaakt van de draw functie wilden we proberen om de<br>
+        game te maken zonder de draw functie te gebruiken maar om Pong te maken hadden we het toch nodig. Een<br>
+        ander probleem was dat de server geen onderscheidt kon maken tussen client 1 en client 2. Er moest dus<br>
+        code worden geschreven om de server te laten snappen dat client 1 de linker paddle is en dat client 2 de<br>
+        rechter paddle is. Op dit moment gingen de ene helft van de groep bezig aan het eerste probleem en de<br>
+        andere helft aan het tweede probleem. Beide problemen hebben we nog steeds niet op weten te lossen. We<br>
+        wilden ook meer voorbeelden en tutorials op internet opzoeken maar er was vrij weinig informatie die ons<br>
+        verder kon helpen en de nuttige informatie was alweer verouderd. Maar ik denk dat het wel mogelijk is om<br>
+        deze problemen op te lossen. Maar wel een beetje te laat…
+      </p>
+      
+      
+      <p>
+        Je kan de huidige code <a href="https://github.com/Loch4Nessie/Pong-Online">hier</a> vinden. Dit is een<br>
+        van de versies van de code die we nu hebben. Omdat er veel problemen waren waren we elke keer opnieuw<br>
+        begonnen en er zijn dus wat versies geweest die wat beter functioneerde maar we waren dom genoeg om<br>
+        niet van alles copieen te maken. (leermoment :) )
       </p>
       
       
