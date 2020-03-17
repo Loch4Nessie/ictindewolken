@@ -1,0 +1,53 @@
+import pyautogui
+geenBommen = []
+bommen = []
+
+def regels(w, y):
+	global geenBommen
+	for x in y:	
+		vlaggenOmGetal = list(pyautogui.locateAllOnScreen(vlag, region=(x[0]-30, x[1]-30, 90, 90)))
+		legeTegelsOmGetal = list(pyautogui.locateAllOnScreen(lege_tegel, region=(x[0]-30, x[1]-30, 90, 90)))
+
+		if len(vlaggenOmGetal) == int(w) and len(legeTegelsOmGetal) > 0:
+			for x in legeTegelsOmGetal:
+				if x not in geenBommen:
+					geenBommen.append(x)
+
+		if len(legeTegelsOmGetal) == (int(w) - len(vlaggenOmGetal)):
+			for x in legeTegelsOmGetal:
+				if x not in bommen:
+					bommen.append(x)
+
+		#if x == y[-1]:
+		#	break
+
+
+while True:
+	bleh = input()
+
+	if bleh == 'g':
+		lege_tegel = 'tegel.png'
+		vlag = 'vlag.png'
+		enen = list(pyautogui.locateAllOnScreen('1.png'))
+		tweeën = list(pyautogui.locateAllOnScreen('2.png'))
+		drieën = list(pyautogui.locateAllOnScreen('3.png'))
+		vieren = list(pyautogui.locateAllOnScreen('4.png'))
+		vijven = list(pyautogui.locateAllOnScreen('5.png'))
+		zessen = list(pyautogui.locateAllOnScreen('6.png'))
+		zevens = list(pyautogui.locateAllOnScreen('7.png'))
+		achten = list(pyautogui.locateAllOnScreen('8.png'))
+		#tegelsGetal = [enen, tweeën, drieën, vieren, vijven, zessen, zevens, achten]
+		#Detecteert alle tegels met getallen
+		
+		regels(1, enen)
+		regels(2, tweeën)
+		regels(3, drieën)
+		regels(4, vieren)
+		regels(5, vijven)
+		regels(6, zessen)
+		regels(7, zevens)
+		regels(8, achten)
+		print(len(geenBommen))
+		print(len(bommen))
+
+
