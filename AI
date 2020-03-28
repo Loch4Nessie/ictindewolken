@@ -64,5 +64,3 @@ if bleh == 'g':
             for y in geenBommen:
                 pyautogui.moveTo(x=y[0], y=y[1])
                 pyautogui.click()
-
-
