@@ -1,10 +1,13 @@
-import pyautogui, random
+import pyautogui
+import random
 geenBommen = []
 bommen = []
+grenzen_veld = None
+eerste_keer = True
 
 def regels(w, y):
-        global geenBommen
-        for x in y:     
+        global bommen, geenBommen
+        for x in y:
                 vlaggenOmGetal = list(pyautogui.locateAllOnScreen('vlag.png', region=(x[0]-30, x[1]-30, 90, 90)))
                 legeTegelsOmGetal = list(pyautogui.locateAllOnScreen('tegel.png', region=(x[0]-30, x[1]-30, 90, 90)))
 
@@ -18,49 +21,78 @@ def regels(w, y):
                                 if x not in bommen:
                                         bommen.append(x)
 
+def clickRandom():
+        global veld
+        tegels = list(pyautogui.locateAllOnScreen('tegel.png'))
+        #ok = list(pyautogui.locateAllOnScreen('ok.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        #NewGame = list(pyautogui.locateAllOnScreen('NewGame.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        #Dit zijn de dingen die hij aan moet klikken om een nieuw spel te beginnen.
+        if not tegels:
+                exit()
+        random_tegel = random.choice(tegels)
+        pyautogui.moveTo(x=random_tegel[0], y=random_tegel[1])
+        pyautogui.click()
+        play()
 
+def whatToClick():
+        global bommen, geenBommen
+        if not bommen and not geenBommen:
+                clickRandom()
+        else:
+                for x in bommen:
+                        pyautogui.moveTo(x=x[0], y=x[1])
+                        pyautogui.click(button='right')
+                        bommen = []
 
+                for y in geenBommen:
+                        pyautogui.moveTo(x=y[0], y=y[1])
+                        pyautogui.click()
+                        geenBommen = []
+                play()
 
-bleh = input()
-    
-if bleh == 'g':
-    while True:
-        geenBommen = []
-        bommen = []
-        enen = list(pyautogui.locateAllOnScreen('1.png'))
-        tweeën = list(pyautogui.locateAllOnScreen('2.png'))
-        drieën = list(pyautogui.locateAllOnScreen('3.png'))
-        vieren = list(pyautogui.locateAllOnScreen('4.png'))
-        vijven = list(pyautogui.locateAllOnScreen('5.png'))
-        zessen = list(pyautogui.locateAllOnScreen('6.png'))
-        zevens = list(pyautogui.locateAllOnScreen('7.png'))
-        achten = list(pyautogui.locateAllOnScreen('8.png'))
-        #tegelsGetal = [enen, tweeën, drieën, vieren, vijven, zessen, zevens, achten]
+def play():
+        global eerste_keer, grenzen_veld
+        if eerste_keer:
+            veld = list(pyautogui.locateAllOnScreen('tegel.png'))
+            grenzen_veld = [veld[0][0], veld[0][1], veld[-1][0]-veld[0][0]+30, veld[-1][1]-veld[0][1]+30]
+            print(grenzen_veld)
+            eerste_keer = False
+            clickRandom()
+        enen = list(pyautogui.locateAllOnScreen('1.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        if not enen:
+                clickRandom()
+        regels(1, enen)
+        tweeën = list(pyautogui.locateAllOnScreen('2.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        if not tweeën:
+                whatToClick()
+        regels(2, tweeën)
+        drieën = list(pyautogui.locateAllOnScreen('3.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        if not drieën:
+                whatToClick()
+        regels(3, drieën)
+        vieren = list(pyautogui.locateAllOnScreen('4.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        if not vieren:
+        		whatToClick()
+        regels(4, vieren)
+        vijven = list(pyautogui.locateAllOnScreen('5.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        if not vijven:
+        		whatToClick()
+        regels(5, vijven)
+        zessen = list(pyautogui.locateAllOnScreen('6.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        if not zessen:
+        		whatToClick()
+        regels(6, zessen)
+        zevens = list(pyautogui.locateAllOnScreen('7.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        if not zevens:
+        		whatToClick()
+        regels(7, zevens)
+        achten = list(pyautogui.locateAllOnScreen('8.png', region = (grenzen_veld[0], grenzen_veld[1], grenzen_veld[2], grenzen_veld[3])))
+        if not achten:
+        		whatToClick()
+        regels(8, achten)
+        whatToClick()
         #Detecteert alle tegels met getallen
 
-        regels(1, enen)
-        regels(2, tweeën)
-        regels(3, drieën)
-        regels(4, vieren)
-        regels(5, vijven)
-        regels(6, zessen)
-        regels(7, zevens)
-        regels(8, achten)
-        print(len(geenBommen))
-        print(len(bommen))
-
-        if not bommen and not geenBommen:
-
-            veld = list(pyautogui.locateAllOnScreen('tegel.png'))
-            random_tegel = random.choice(veld)
-            pyautogui.moveTo(x=random_tegel[0], y=random_tegel[1])
-            pyautogui.click()
-
-        else:
-            for x in bommen:
-                pyautogui.moveTo(x=x[0], y=x[1])
-                pyautogui.click(button='right')
-
-            for y in geenBommen:
-                pyautogui.moveTo(x=y[0], y=y[1])
-                pyautogui.click()
+bleh = input()
+if bleh == 'g':
+        play()
